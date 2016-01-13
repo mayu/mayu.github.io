@@ -88,11 +88,13 @@
     }
 
     #about {
-      background: url(./img/about.png);
+      /*background: url(./img/about.png);*/
       background-size: cover;
       background-repeat: no-repeat;
       width: 100vw;
       padding: 10vh 0;
+      background: rgba(0,0,0,0.1);
+
     }
     #about p {
       text-align: center;
@@ -101,6 +103,7 @@
       padding: 2vmax;
       max-width: 80vw;
       margin: 0 auto;
+      color: black;
     }
 
     #jobs {
@@ -227,7 +230,8 @@
   <section class="" id="about">
     <p class="content">Most electronic instruments are designed to be looped. As a result, an entire industry has forgotten the craft of instrumentation and improvision.</p>
     <p class="content u-Bold">We plan to change that.</p>
-    <p class="content">We’re a startup team of product designers, musicians, engineers, and coders coming together to reimagine instruments for electronic musicians to help them play live. </p>
+    <p class="content">We’re a team of product designers, music theorists, sound designers, fabric designers, hardware engineers, app engineers, and AI engineers,
+      <br>and we're coming together to build a product that makes it easier for a modern beat maker to create live music. </p>
   </section>
   <section class="" id="jobs">
     <!-- <div class="Section-hero"> <br />Apply today.</div> -->
@@ -304,7 +308,7 @@
   </section>
 
   <section id="footer">
-    &copy; 2016 Mayu Studios
+    &copy; 2016 Mayu Studios | Being Made With Love In The Live Music Capital of the World
   </section>
 
   <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -334,7 +338,7 @@
       // Nav
         var navBackgroundActivated = windowScrolled
           .map(function(window) {
-            return window.scrollY - (window.document.documentElement.clientHeight * .5);
+            return window.scrollY - (window.document.documentElement.clientHeight * .2);
           })
           .map(function(scrollTop) {
             return scrollTop <= 0 ? 0 : scrollTop <= 500 ? (scrollTop / 500) : 1;
