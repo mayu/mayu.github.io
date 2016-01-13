@@ -337,7 +337,7 @@
             return window.scrollY - (window.document.documentElement.clientHeight * .5);
           })
           .map(function(scrollTop) {
-            return scrollTop < 0 ? 0 : scrollTop < 200 ? (scrollTop / 200) : 1;
+            return scrollTop < 0 ? 0 : scrollTop < 500 ? (scrollTop / 500) : 1;
           })
 
         introCrossed.onValue(function(navOpacity) {
