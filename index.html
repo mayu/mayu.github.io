@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Mayu Studios</title>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
+  <style>
+    body, ul, h1, h2, h3, h4, h5, h6, p, a {
+      padding: 0;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+    }
+    h1, img,h2 {
+      margin-top: 10px;
+    }
+    body {
+
+      font-family: "Oswald", sans-serif;
+      font-size: 2vmax;
+      font-weight: 400;
+      text-align: left;
+
+    }
+
+
+    nav {
+      /*width: 100%;*/
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    nav, nav a, li a:visited {
+      font-size: 2vmax;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav li a:hover {
+
+      text-decoration: underline;
+
+    }
+
+    h1 {
+
+      font-size: 5.5vmax;
+      font-weight: 400;
+
+    }
+
+
+    #intro .hero {
+
+      background: url(./img/cover.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100vw;
+
+      height: 100vh;
+      overflow: hidden;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1!important;
+    }
+
+    #intro  {
+      height: 99vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    section {
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.3);
+      z-index: 2;
+      position: relative;
+    }
+    #intro h1 {
+      padding-top: 34vh;
+      padding-left: 2vmax;
+    }
+
+    #about {
+      background: url(./img/about.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100vw;
+      padding: 10vh 0;
+    }
+    #about p {
+      text-align: center;
+      font-size: 3vmax;
+      font-weight: 300;
+      padding: 2vmax;
+      max-width: 80vw;
+      margin: 0 auto;
+    }
+
+    #jobs {
+      background: url(./img/jobs.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100vw;
+    }
+
+    .Section-hero {
+      text-align: center;
+      font-size: 4vmax;
+      font-weight: 700;
+      padding: 4vmax;
+      max-width: 80vw;
+      margin: 0 auto;
+    }
+
+    .Nav {
+      width: 100%;
+    }
+
+    .Nav .Nav-left {
+      text-align: left;
+    }
+    .Nav .Nav-right {
+      text-align: right;
+    }
+    .Nav-right, .Nav-left {
+      width:46vw;
+      margin: 2vw;
+      float: left;
+    }
+    .blur {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100vw;
+      height: 1vw;
+    }
+    .blur {
+      background: rgba(240,54,54,1);
+    }
+    /*.blur {
+      height: 10px;
+    }*/
+    .u-Bold {
+        font-weight: 700!important;
+    }
+
+    ul, li {
+      list-style-type: none;
+    }
+    .Jobs {
+      font-size: 1.8vmax;
+    }
+    .Jobs > ul > li > ul  {
+      margin-left: 2vw;
+    }
+    .Jobs > ul > li > ul li {
+      font-weight: 300;
+      font-size: 1.4vmax;
+      line-height: 2vmax;
+      margin-top: 0.5vmax;
+      font-family: "Helvetica Neue", sans-serif;
+      list-style-type: circle;
+    }
+
+    .Jobs {
+      width: 96vw;
+      padding: 2vw;
+      position: relative;
+    }
+    .Jobs > ul > li {
+      width: 28vw;
+      margin: 2vw;
+      float: left;
+    }
+    @media only screen and (max-device-width: 480px) {
+      .Jobs > ul > li {
+        width: 96vw;
+      }
+	 }
+   .apply {
+     background: white;
+    padding: 1vmin;
+    border-radius: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1vmax;
+    vertical-align: middle;
+    font-weight: 700;
+    color: black;
+    margin-left: 0.5vw;
+   }
+   #footer {
+     text-align: center;
+     background: url(./img/about.png);
+     background-size: cover;
+     background-repeat: no-repeat;
+     font-size: 1vmax;
+     text-transform: uppercase;
+     box-shadow: inset 2px 0px 5px rgba(0,0,0,0.5);
+     padding: 2vmax;
+   }
+  </style>
+</head>
+
+<body>
+  <script> document.body.style.display = 'none';</script>
+
+  <nav>
+    <div style="position: relative">
+      <div class="blur"></div>
+    </div>
+    <div class="Nav">
+        <div class="Nav-left"><a href="#intro">Mayu Studios</a></div>
+        <div class="Nav-right"><a href="#about">About</a> • <a href="#jobs">Jobs</a> • <a href="#contact">Contact</a></div>
+    </div>
+  </nav>
+  <section id="intro">
+    <div class="hero"><h1>We reimagine electronic <br />instruments for live music.</div></h1>
+  </section>
+  <section class="" id="about">
+    <p class="content">Most electronic instruments are designed to be looped. As a result, an entire industry has forgotten the craft of instrumentation and improvision.</p>
+    <p class="content u-Bold">We plan to change that.</p>
+    <p class="content">We’re a startup team of product designers, musicians, engineers, and coders coming together to reimagine instruments for electronic musicians to help them play live. </p>
+  </section>
+  <section class="" id="jobs">
+    <!-- <div class="Section-hero"> <br />Apply today.</div> -->
+    <div class="Jobs">
+      <h2>Open Positions: <span style="font-weight:300">Help us change the electronic music landscape.</span></h2>
+      <ul>
+          <li>
+            <span>Wearables Designer Internship <a class="apply" href="mailto:apply@mayullc.com?subject=Wearables Designer Internship">Apply</a></span>
+            <ul>
+                <li>You find wearables fascinating.</li>
+                <li>Access to tools including CNC machines, 3D Printers, and more.</li>
+                <li>Learn directly from the best in their respective fields, including senior designers and professors.</li>
+            </ul>
+          </li>
+
+          <li>
+            <span>Electronics Engineer</span> <a class="apply" href="mailto:apply@mayullc.com?subject=Electronics Engineer">Apply</a>
+            <ul>
+                <li>You find wearables fascinating.</li>
+                <li>Comfort working with provided tools including CNC machines, 3D Printers, and more.</li>
+                <li>You can work with soft fabric eletronic components (like conductive thread).</li>
+                <li>You learned or desire to learn the intricacies of human centered design (design thinking).</li>
+                <li>You have amazing technical abilities and know how to balance them with being goal/value driven.</li>
+                <li>You give direct, clear communication and expect the same of your peers.</li>
+                <li>You prefer working less time with more focus.</li>
+            </ul>
+          </li>
+
+          <li>
+            <span>Fabric Designer</span><a class="apply" href="mailto:apply@mayullc.com?subject=Fabric Designer">Apply</a>
+            <ul>
+              <li>You find wearables fascinating.</li>
+              <li>You can sew something as complex as a glove.</li>
+              <li>(Bonus): You know how to use automated sewing machines.</li>
+              <li>You understand tradeoffs between different layers of fabric and hour they could work together.</li>
+              <li>You learned or desire to learn the intricacies of human centered design (design thinking).</li>
+              <li>You have amazing technical abilities and know how to balance them with being goal/value driven.</li>
+              <li>You give direct, clear communication and expect the same of your peers.</li>
+              <li>You prefer working less time with more focus.</li>
+            </ul>
+
+          </li>
+
+          <li>
+            <span>Reactive App Engineer - Cross Platforms</span><a class="apply" href="mailto:apply@mayullc.com?subject=Reactive App Engineer">Apply</a>
+            <ul>
+              <li>You think in streams, events, and/or reactivity.</li>
+              <li>You can build a cross platform video game that interacts with a midi controller (mobile support is critical).</li>
+              <li>You find wearables fascinating.</li>
+              <li>You love working on highly available, large scale web services used by real people, every single day.</li>
+              <li>You love NodeJS but know when not to use it.</li>
+              <li>You love human centered design.</li>
+              <li>You can manage cloud deployments.</li>
+              <li>You have amazing technical abilities and know how to balance them with being goal/value driven.</li>
+              <li>You give direct, clear communication and expect the same of your peers.</li>
+              <li>You know how to work well with remote teams.</li>
+              <li>You value code reviews and have a tight focus on quality engineering.</li>
+              <li>You think about how your code / solution will scale long before deploying it.</li>
+              <li>You prefer working less hours with more focus.</li>
+            </ul>
+
+          </li>
+
+      </ul>
+      <div style="clear: both"></div>
+
+    </div>
+  </section>
+
+
+
+  <section class="" id="contact">
+    <iframe src="https://docs.google.com/forms/d/1GVI5MaDav4eknmPv9dLAO3sbOwg0sUTrqHnXFSdF5FU/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="overflow:hidden; display: inherit;">Loading...</iframe>
+  </section>
+
+  <section id="footer">
+    &copy; 2016 Mayu Studios
+  </section>
+
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="http://cdnjs.buttflare.com/ajax/libs/kefir/3.2.0/kefir.min.js"></script>
+
+  <script>
+
+    // Initialized
+      var initialized = Kefir.fromCallback(function(callback) {
+          $(function() {callback(window)});
+        });
+
+      initialized.onValue(function() {
+        $('body').fadeIn();
+      })
+
+    // User Scrolled
+
+      var userScrolled = Kefir.fromEvents($(window), 'scroll')
+        .throttle(16)
+        .map(function(e) {
+          return e.currentTarget // returns window object
+        });
+
+      var windowScrolled = Kefir.merge([initialized, userScrolled])
+
+      // Nav
+        var introCrossed = windowScrolled
+          .map(function(window) {
+            return window.scrollY - (window.document.documentElement.clientHeight * .5);
+          })
+          .map(function(scrollTop) {
+            return scrollTop < 0 ? 0 : scrollTop < 200 ? (scrollTop / 200) : 1;
+          })
+
+        introCrossed.onValue(function(navOpacity) {
+          window.requestAnimationFrame(function() {
+            var boxShadowOpacity = navOpacity > .3 ? .3 : navOpacity;
+            $('nav').css({
+              'background': 'rgba(240,54,54,' + navOpacity + ')',
+              'boxShadow': '0 2px 3px rgba(0,0,0,' + boxShadowOpacity  + ')'
+            });
+          })
+        });
+
+  </script>
+</body>
+
+</html>
