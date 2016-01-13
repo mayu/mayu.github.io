@@ -332,22 +332,34 @@
       var windowScrolled = Kefir.merge([initialized, userScrolled])
 
       // Nav
-        var introCrossed = windowScrolled
+        var navBackgroundActivated = windowScrolled
           .map(function(window) {
             return window.scrollY - (window.document.documentElement.clientHeight * .5);
           })
           .map(function(scrollTop) {
-            return scrollTop < 0 ? 0 : scrollTop < 500 ? (scrollTop / 500) : 1;
+            return scrollTop <= 0 ? 0 : scrollTop <= 500 ? (scrollTop / 500) : 1;
           })
+          .map(function(navOpacity) {
+            return parseFloat(navOpacity.toFixed(2));
+          });
 
-        introCrossed.onValue(function(navOpacity) {
+        var navBackgroundDiff = navBackgroundActivated
+          .diff(function(prev,next){return [prev,next]}, -1) // -1 is initial number to diff with;
+          .filter(function(a){
+            return a[0] !== a[1]
+          })
+          .map(function(values) {
+            return values[1]
+          });
+
+        navBackgroundDiff.onValue(function(navOpacity) {
           window.requestAnimationFrame(function() {
             var boxShadowOpacity = navOpacity > .3 ? .3 : navOpacity;
             $('nav').css({
               'background': 'rgba(240,54,54,' + navOpacity + ')',
               'boxShadow': '0 2px 3px rgba(0,0,0,' + boxShadowOpacity  + ')'
             });
-          })
+          });
         });
 
   </script>
