@@ -72,7 +72,7 @@
     }
 
     #intro  {
-      height: 99vh;
+      height: 98vh;
       width: 100vw;
       overflow: hidden;
     }
@@ -88,11 +88,13 @@
     }
 
     #about {
-      background: url(./img/about.png);
+      /*background: url(./img/about.png);*/
       background-size: cover;
       background-repeat: no-repeat;
       width: 100vw;
       padding: 10vh 0;
+      background: rgb(241, 241, 241);
+
     }
     #about p {
       text-align: center;
@@ -101,6 +103,7 @@
       padding: 2vmax;
       max-width: 80vw;
       margin: 0 auto;
+      color: black;
     }
 
     #jobs {
@@ -179,7 +182,7 @@
       margin: 2vw;
       float: left;
     }
-    @media only screen and (max-device-width: 480px) {
+    @media only screen and (max-width: 980px) {
       .Jobs > ul > li {
         width: 96vw;
       }
@@ -198,7 +201,7 @@
    }
    #footer {
      text-align: center;
-     background: url(./img/about.png);
+     background: #333;
      background-size: cover;
      background-repeat: no-repeat;
      font-size: 1vmax;
@@ -226,22 +229,15 @@
   </section>
   <section class="" id="about">
     <p class="content">Most electronic instruments are designed to be looped. As a result, an entire industry has forgotten the craft of instrumentation and improvision.</p>
-    <p class="content u-Bold">We plan to change that.</p>
-    <p class="content">We’re a startup team of product designers, musicians, engineers, and coders coming together to reimagine instruments for electronic musicians to help them play live. </p>
+    <p class="content u-Bold">We're changing that.</p>
+    <p class="content">We’re a team of design thinkers, music theorists, sound designers, fabric designers, hardware and software engineers,
+      <br>and we're coming together to build a product that makes it easier for a modern beat maker to create live music. </p>
   </section>
   <section class="" id="jobs">
     <!-- <div class="Section-hero"> <br />Apply today.</div> -->
     <div class="Jobs">
       <h2>Open Positions: <span style="font-weight:300">Help us change the electronic music landscape.</span></h2>
       <ul>
-          <li>
-            <span>Wearables Designer Internship <a class="apply" href="mailto:apply@mayullc.com?subject=Wearables Designer Internship">Apply</a></span>
-            <ul>
-                <li>You find wearables fascinating.</li>
-                <li>Access to tools including CNC machines, 3D Printers, and more.</li>
-                <li>Learn directly from the best in their respective fields, including senior designers and professors.</li>
-            </ul>
-          </li>
 
           <li>
             <span>Electronics Engineer</span> <a class="apply" href="mailto:apply@mayullc.com?subject=Electronics Engineer">Apply</a>
@@ -271,26 +267,6 @@
 
           </li>
 
-          <li>
-            <span>Reactive App Engineer - Cross Platforms</span><a class="apply" href="mailto:apply@mayullc.com?subject=Reactive App Engineer">Apply</a>
-            <ul>
-              <li>You think in streams, events, and/or reactivity.</li>
-              <li>You can build a cross platform video game that interacts with a midi controller (mobile support is critical).</li>
-              <li>You find wearables fascinating.</li>
-              <li>You love working on highly available, large scale web services used by real people, every single day.</li>
-              <li>You love NodeJS but know when not to use it.</li>
-              <li>You love human centered design.</li>
-              <li>You can manage cloud deployments.</li>
-              <li>You have amazing technical abilities and know how to balance them with being goal/value driven.</li>
-              <li>You give direct, clear communication and expect the same of your peers.</li>
-              <li>You know how to work well with remote teams.</li>
-              <li>You value code reviews and have a tight focus on quality engineering.</li>
-              <li>You think about how your code / solution will scale long before deploying it.</li>
-              <li>You prefer working less hours with more focus.</li>
-            </ul>
-
-          </li>
-
       </ul>
       <div style="clear: both"></div>
 
@@ -300,15 +276,15 @@
 
 
   <section class="" id="contact">
-    <iframe src="https://docs.google.com/forms/d/1GVI5MaDav4eknmPv9dLAO3sbOwg0sUTrqHnXFSdF5FU/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="overflow:hidden; display: inherit;">Loading...</iframe>
+    <iframe src="https://docs.google.com/forms/d/1lazvhHayjZ2bo_doU4GWIJqhJCDOD-y9bS27BQuU-qk/viewform?embedded=true" width="100%" height="1100" frameborder="0" marginheight="0" marginwidth="0" style="overflow:hidden; display: inherit; min-height: 100vh;">Loading...</iframe>
   </section>
 
   <section id="footer">
-    &copy; 2016 Mayu Studios
+    &copy; 2016 Mayu Studios | Being Made With Love In The Live Music Capital of the World
   </section>
 
   <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-  <script src="http://cdnjs.buttflare.com/ajax/libs/kefir/3.2.0/kefir.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/kefir/3.2.0/kefir.min.js"></script>
 
   <script>
 
@@ -332,25 +308,49 @@
       var windowScrolled = Kefir.merge([initialized, userScrolled])
 
       // Nav
-        var introCrossed = windowScrolled
+        var navBackgroundActivated = windowScrolled
           .map(function(window) {
-            return window.scrollY - (window.document.documentElement.clientHeight * .5);
+            return window.scrollY - (window.document.documentElement.clientHeight * .2);
           })
           .map(function(scrollTop) {
-            return scrollTop < 0 ? 0 : scrollTop < 200 ? (scrollTop / 200) : 1;
+            return scrollTop <= 0 ? 0 : scrollTop <= 500 ? (scrollTop / 500) : 1;
           })
+          .map(function(navOpacity) {
+            return parseFloat(navOpacity.toFixed(2));
+          });
 
-        introCrossed.onValue(function(navOpacity) {
+        var navBackgroundDiff = navBackgroundActivated
+          .diff(function(prev,next){return [prev,next]}, -1) // -1 is initial number to diff with;
+          .filter(function(a){
+            return a[0] !== a[1]
+          })
+          .map(function(values) {
+            return values[1]
+          });
+
+        navBackgroundDiff.onValue(function(navOpacity) {
           window.requestAnimationFrame(function() {
             var boxShadowOpacity = navOpacity > .3 ? .3 : navOpacity;
             $('nav').css({
               'background': 'rgba(240,54,54,' + navOpacity + ')',
               'boxShadow': '0 2px 3px rgba(0,0,0,' + boxShadowOpacity  + ')'
             });
-          })
+          });
         });
 
   </script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72691609-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 </body>
 
 </html>
