@@ -234,9 +234,9 @@
       <br>and we're coming together to build a product that makes it easier for a modern music to perform live music.</p>
   </section>
   <section class="" id="jobs">
-    <!-- <div class="Section-hero"> <br />Apply today.</div> -->
+    <div class="Section-hero"> <br />Apply today.</div>
     <div class="Jobs">
-      <h2>Open Positions: <span style="font-weight:300">Help us change the electronic music landscape.</span></h2>
+      <h2><span style="font-weight:300">Please send resume, portfolio, and cover letter along with any applicable networks (GitHub, Dribble, Spoonflower, etc)</span></h2>
       <ul>
 
           <li>
@@ -282,46 +282,46 @@
         $('body').fadeIn();
       })
 
-    // User Scrolled
+    //// User Scrolled
 
-      var userScrolled = Kefir.fromEvents($(window), 'scroll')
-        .throttle(16)
-        .map(function(e) {
-          return e.currentTarget // returns window object
-        });
+    //  var userScrolled = Kefir.fromEvents($(window), 'scroll')
+    //    .throttle(16)
+    //    .map(function(e) {
+    //      return e.currentTarget // returns window object
+    //    });
 
-      var windowScrolled = Kefir.merge([initialized, userScrolled])
+    //  var windowScrolled = Kefir.merge([initialized, userScrolled])
 
-      // Nav
-        var navBackgroundActivated = windowScrolled
-          .map(function(window) {
-            return window.scrollY - (window.document.documentElement.clientHeight * .2);
-          })
-          .map(function(scrollTop) {
-            return scrollTop <= 0 ? 0 : scrollTop <= 500 ? (scrollTop / 500) : 1;
-          })
-          .map(function(navOpacity) {
-            return parseFloat(navOpacity.toFixed(2));
-          });
+    //  // Nav
+    //    var navBackgroundActivated = windowScrolled
+    //      .map(function(window) {
+    //        return window.scrollY - (window.document.documentElement.clientHeight * .2);
+    //      })
+    //      .map(function(scrollTop) {
+    //        return scrollTop <= 0 ? 0 : scrollTop <= 500 ? (scrollTop / 500) : 1;
+    //      })
+    //      .map(function(navOpacity) {
+    //        return parseFloat(navOpacity.toFixed(2));
+    //      });
 
-        var navBackgroundDiff = navBackgroundActivated
-          .diff(function(prev,next){return [prev,next]}, -1) // -1 is initial number to diff with;
-          .filter(function(a){
-            return a[0] !== a[1]
-          })
-          .map(function(values) {
-            return values[1]
-          });
+    //    var navBackgroundDiff = navBackgroundActivated
+    //      .diff(function(prev,next){return [prev,next]}, -1) // -1 is initial number to diff with;
+    //      .filter(function(a){
+    //        return a[0] !== a[1]
+    //      })
+    //      .map(function(values) {
+    //        return values[1]
+    //      });
 
-        navBackgroundDiff.onValue(function(navOpacity) {
-          window.requestAnimationFrame(function() {
-            var boxShadowOpacity = navOpacity > .3 ? .3 : navOpacity;
-            $('nav').css({
-              'background': 'rgba(240,54,54,' + navOpacity + ')',
-              'boxShadow': '0 2px 3px rgba(0,0,0,' + boxShadowOpacity  + ')'
-            });
-          });
-        });
+    //    navBackgroundDiff.onValue(function(navOpacity) {
+    //      window.requestAnimationFrame(function() {
+    //        var boxShadowOpacity = navOpacity > .3 ? .3 : navOpacity;
+    //        $('nav').css({
+    //          'background': 'rgba(240,54,54,' + navOpacity + ')',
+    //          'boxShadow': '0 2px 3px rgba(0,0,0,' + boxShadowOpacity  + ')'
+    //        });
+    //      });
+    //    });
 
   </script>
 
