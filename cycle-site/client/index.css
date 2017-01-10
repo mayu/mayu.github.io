@@ -1,0 +1,116 @@
+/* Typography */
+
+  @import url('https://fonts.googleapis.com/css?family=Muli');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+  @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+  body, ul, h1, h2, h3, h4, h5, h6, p, a {
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    font-family: 'Montserrat';
+  }
+
+  nav {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;;
+  }
+
+/* Container Structure */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, ul, li, h1, h2, h3, h4, h5, h6, p, a {
+    padding: 0;
+    margin: 0;
+  }
+
+  li, ul {
+    list-style-type: none;
+  }
+
+  .Grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .Col {
+    flex: 1;
+  }
+
+  @media (orientation: portrait) {
+    .flex-grid {
+      display: block;
+    }
+  }
+
+/* Container Skin */
+  body {
+    background: rgba(0,0,0,1);
+  }
+/* Container Nav */
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+  }
+
+  nav .isActive  {
+    transform: scale(2) translate(0rem);
+    transform-origin: left;
+  }
+
+  nav *:not(.isActive)  {
+    /*background: white;*/
+    transform: scale(1) translate(0rem);
+  }
+  nav li {
+    padding: 1rem;
+  }
+  nav li a{
+    position: relative;
+    display: block;
+  }
+/* Components */
+
+  .Hero-title {
+    font-family: "Montserrat";
+    color: #acffc7;
+    text-transform: uppercase;
+    text-align: justify;
+    font-size: 4rem;
+    z-index: 2;
+    position: relative;
+    /*transform: translate(0, 40vh);*/
+    /*position: absolute;
+    top: 30vh;
+    left: 36vw;*/
+    /*width: 40vw;*/
+    /*max-width: 20rem;*/
+  }
+  .Hero-title-col {
+    max-width: 28rem;
+  }
+  .Hero-image {
+    z-index: 1;
+
+    display: block;
+    min-width: 100vh;
+    min-height: 100vh;
+    position: absolute;
+
+    filter: blur(0px) grayscale(0.4);
+  }
+
+/* Utilities */
+  .u-Full {
+    height: 100vh;
+    width: 100vw;
+  }

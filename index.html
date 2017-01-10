@@ -25,7 +25,6 @@
       text-align: left;
     }
 
-
     nav {
       /*width: 100%;*/
       font-family: 'Montserrat', sans-serif;
@@ -38,9 +37,10 @@
     }
 
     nav, nav a, li a:visited {
-      font-size: 2vmax;
+      font-size: 2vmin;
       font-weight: 700;
       text-decoration: none;
+      color: rgba(255,255,255,0.7);
     }
 
     nav li a:hover {
@@ -50,13 +50,13 @@
     }
 
     h1 {
-      font-family: 'Oswald', serif;
-      font-size: 7.5vmin;
+      font-family: 'Montserrat', serif;
+      font-size: 4vmin;
       font-weight: 300;
-      color: #ffffff;
-      text-align: right;
-      /* text-transform: uppercase; */
-      text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+      color: rgba(255,255,255,1);
+      text-align: center;
+       text-transform: uppercase;
+      /*text-shadow: 0px 2px 4px rgba(0,0,0,0.3);*/
     }
 
     #intro h1 {
@@ -65,10 +65,9 @@
       padding-right: 3vw;
     }
 
-
-    #intro .hero {
-
-      background: url(./img/cover2.jpg);
+    #intro .hero-image {
+      background: url(img/cover3.jpg);
+      -webkit-filter: grayscale(0.5) blur(5px);
       background-size: cover;
       background-repeat: no-repeat;
       width: 100vw;
@@ -82,8 +81,20 @@
       z-index: 1!important;
     }
 
+    #intro .hero {
+
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2!important;
+    }
+
     #intro  {
-      height: 98vh;
+      height: 100vh;
       width: 100vw;
       overflow: hidden;
     }
@@ -245,11 +256,20 @@
 
   <nav>
     <div class="Nav">
-        <div class="Nav-left"><a href="#intro">Mayu Studios</a></div>
-        <div class="Nav-right"><a href="#about">About</a> • <a href="#jobs">Jobs</a> • <a href="#contact">Contact</a></div>
+        <div class="Nav-left">
+          <a href="#intro">Get Updates</a><br>
+          <a href="#intro" style="color:white">Gloves by Mayu</a><br>
+          <a href="#about">&nbsp;&nbsp;&nbsp; Process</a><br>
+          <a href="#about">&nbsp;&nbsp;&nbsp; Team</a><br>
+          <a href="#about">&nbsp;&nbsp;&nbsp; Philosophy</a><br>
+          <a href="#jobs">Jobs</a><br>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="Nav-right"></div>
     </div>
   </nav>
   <section id="intro">
+    <div class="hero-image"> </div>
     <div class="hero"><h1>We are turning body language <br />into a musical instrument.</div></h1>
   </section>
   <section class="" id="about">
