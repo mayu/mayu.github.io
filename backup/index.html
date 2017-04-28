@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Mayu Studios</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Muli');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+    body, ul, h1, h2, h3, h4, h5, h6, p, a {
+      padding: 0;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+    }
+    h1, img,h2 {
+      margin-top: 10px;
+    }
+    body {
+      font-family: 'Muli', sans-serif;
+      font-size: 2vmax;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    nav {
+      /*width: 100%;*/
+      font-family: 'Montserrat', sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    nav, nav a, li a:visited {
+      font-size: 2vmin;
+      font-weight: 700;
+      text-decoration: none;
+      color: rgba(255,255,255,0.7);
+    }
+
+    nav li a:hover {
+
+      text-decoration: underline;
+
+    }
+
+    h1 {
+      font-family: 'Montserrat', serif;
+      font-size: 4vmin;
+      font-weight: 300;
+      color: rgba(255,255,255,1);
+      text-align: center;
+       text-transform: uppercase;
+      /*text-shadow: 0px 2px 4px rgba(0,0,0,0.3);*/
+    }
+
+    #intro h1 {
+      padding-top: 36vh;
+      padding-left: 2vmax;
+      padding-right: 3vw;
+    }
+
+    #intro .hero-image {
+      background: url(img/cover3.jpg);
+      -webkit-filter: grayscale(0.5) blur(5px);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100vw;
+
+      height: 100vh;
+      overflow: hidden;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1!important;
+    }
+
+    #intro .hero {
+
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2!important;
+    }
+
+    #intro  {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    section {
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.3);
+      z-index: 2;
+      position: relative;
+    }
+
+    #about {
+      /*background: url(./img/about.png);*/
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100vw;
+      padding: 10vh 0;
+      background: rgb(241, 241, 241);
+
+    }
+    #about p {
+      text-align: center;
+      font-size: 3vmax;
+      font-weight: 300;
+      padding: 2vmax;
+      max-width: 80vw;
+      margin: 0 auto;
+      color: black;
+    }
+
+    #jobs {
+      background: url(./img/jobs.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100vw;
+    }
+
+    .Section-hero {
+      text-align: center;
+      font-size: 4vmax;
+      font-weight: 700;
+      padding: 4vmax;
+      max-width: 80vw;
+      margin: 0 auto;
+    }
+
+    .Nav {
+      width: 100%;
+    }
+
+    .Nav .Nav-left {
+      text-align: left;
+    }
+    .Nav .Nav-right {
+      text-align: right;
+    }
+    .Nav-right, .Nav-left {
+      width:46vw;
+      margin: 2vw;
+      float: left;
+    }
+    .blur {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100vw;
+      height: 1vw;
+    }
+    .blur {
+      background: rgba(240,54,54,1);
+    }
+    /*.blur {
+      height: 10px;
+    }*/
+    .u-Bold {
+        font-weight: 700!important;
+    }
+
+    ul, li {
+      list-style-type: none;
+    }
+    .Jobs {
+      font-size: 1.8vmax;
+    }
+    .Jobs > ul > li > ul  {
+      margin-left: 2vw;
+    }
+    .Jobs > ul > li > ul li {
+      font-weight: 300;
+      font-size: 1.4vmax;
+      line-height: 2vmax;
+      margin-top: 0.5vmax;
+      font-family: "Helvetica Neue", sans-serif;
+      list-style-type: circle;
+    }
+
+    .Jobs {
+      width: 96vw;
+      padding: 2vw;
+      position: relative;
+    }
+    .Jobs > ul > li {
+      width: 28vw;
+      margin: 2vw;
+      float: left;
+    }
+    @media only screen and (max-width: 980px) {
+      .Jobs > ul > li {
+        width: 96vw;
+      }
+	 }
+   .apply {
+     background: white;
+    padding: 1vmin;
+    border-radius: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1vmax;
+    vertical-align: middle;
+    font-weight: 700;
+    color: black;
+    margin-left: 0.5vw;
+   }
+   #footer {
+     text-align: center;
+     background: #333;
+     background-size: cover;
+     background-repeat: no-repeat;
+     font-size: 1vmax;
+     text-transform: uppercase;
+     box-shadow: inset 2px 0px 5px rgba(0,0,0,0.5);
+     padding: 2vmax;
+   }
+  </style>
+
+
+  <link rel="apple-touch-icon" sizes="57x57" href="./icons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./icons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./icons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./icons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./icons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./icons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="./icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="./icons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="./icons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./icons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="./icons/manifest.json">
+  <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="./icons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+  <script> document.body.style.display = 'none';</script>
+
+  <nav>
+    <div class="Nav">
+        <div class="Nav-left">
+          <a href="#intro">Get Updates</a><br>
+          <a href="#intro" style="color:white">Gloves by Mayu</a><br>
+          <a href="#about">&nbsp;&nbsp;&nbsp; Process</a><br>
+          <a href="#about">&nbsp;&nbsp;&nbsp; Team</a><br>
+          <a href="#about">&nbsp;&nbsp;&nbsp; Philosophy</a><br>
+          <a href="#jobs">Jobs</a><br>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="Nav-right"></div>
+    </div>
+  </nav>
+  <section id="intro">
+    <div class="hero-image"> </div>
+    <div class="hero"><h1>We are turning body language <br />into a musical instrument.</div></h1>
+  </section>
+  <section class="" id="about">
+    <p class="content">Most electronic instruments are designed to be looped. As a result, an entire industry has forgotten the craft of instrumentation and improvisation.</p>
+    <p class="content u-Bold">We're changing that.</p>
+    <p class="content">We're coming together to design an e-textile instrument that allows musicians to perform electronic music live in a way that is enjoyable to audiences and easy to translate in the studio. </p>
+  </section>
+  <section class="" id="jobs">
+    <div class="Section-hero"> <br />Apply today.</div>
+    <div class="Jobs">
+      <h2><span style="font-weight:300">Please send resume, portfolio, and cover letter along with any applicable networks (GitHub, Dribble, Spoonflower, etc)</span></h2>
+      <ul>
+
+          <li>
+            <span>Textiles Designer</span> <a class="apply" href="mailto:apply@mayustudios.com?subject=Textiles Designer">Apply</a>
+            <div style="font-size:70%;margin-top:1vmin;font-weight:300">You'll be working on construction and fit design with other textile experts, along with other engineers in electronics, electro-fabrics, and product.</div>
+            <div style="font-size:60%;margin-top:1vmin;font-weight:500;text-transform:uppercase">Requirements</div>
+            <ul>
+                <li>Experience in sewing, garment construction, and garment design required.</li>
+                <li>Ability to sew clean straights lines.</li>
+                <li>Ability to give direct, clear communication and expect the same of your peers.</li>
+            </ul>
+          </li>
+      </ul>
+      <div style="clear: both"></div>
+
+    </div>
+  </section>
+
+
+
+  <section class="" id="contact">
+    <iframe src="https://docs.google.com/forms/d/1lazvhHayjZ2bo_doU4GWIJqhJCDOD-y9bS27BQuU-qk/viewform?embedded=true" width="100%" height="1100" frameborder="0" marginheight="0" marginwidth="0" style="overflow:hidden; display: inherit; min-height: 100vh;">Loading...</iframe>
+  </section>
+
+  <section id="footer">
+    &copy; 2016 Mayu Studios | Being Designed With Love In Lincoln, Nebraska
+  </section>
+
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/kefir/3.2.0/kefir.min.js"></script>
+
+  <script>
+
+    // Initialized
+      var initialized = Kefir.fromCallback(function(callback) {
+          $(function() {callback(window)});
+        });
+
+      initialized.onValue(function() {
+        $('body').fadeIn();
+      })
+
+    //// User Scrolled
+
+    //  var userScrolled = Kefir.fromEvents($(window), 'scroll')
+    //    .throttle(16)
+    //    .map(function(e) {
+    //      return e.currentTarget // returns window object
+    //    });
+
+    //  var windowScrolled = Kefir.merge([initialized, userScrolled])
+
+    //  // Nav
+    //    var navBackgroundActivated = windowScrolled
+    //      .map(function(window) {
+    //        return window.scrollY - (window.document.documentElement.clientHeight * .2);
+    //      })
+    //      .map(function(scrollTop) {
+    //        return scrollTop <= 0 ? 0 : scrollTop <= 500 ? (scrollTop / 500) : 1;
+    //      })
+    //      .map(function(navOpacity) {
+    //        return parseFloat(navOpacity.toFixed(2));
+    //      });
+
+    //    var navBackgroundDiff = navBackgroundActivated
+    //      .diff(function(prev,next){return [prev,next]}, -1) // -1 is initial number to diff with;
+    //      .filter(function(a){
+    //        return a[0] !== a[1]
+    //      })
+    //      .map(function(values) {
+    //        return values[1]
+    //      });
+
+    //    navBackgroundDiff.onValue(function(navOpacity) {
+    //      window.requestAnimationFrame(function() {
+    //        var boxShadowOpacity = navOpacity > .3 ? .3 : navOpacity;
+    //        $('nav').css({
+    //          'background': 'rgba(240,54,54,' + navOpacity + ')',
+    //          'boxShadow': '0 2px 3px rgba(0,0,0,' + boxShadowOpacity  + ')'
+    //        });
+    //      });
+    //    });
+
+  </script>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72691609-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

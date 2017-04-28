@@ -1,0 +1,10 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 12pt
+}
+
+.section-title {
+  font-family: "Bitter";
+  font-size: 18pt;
+  margin: 20pt 0;
+}

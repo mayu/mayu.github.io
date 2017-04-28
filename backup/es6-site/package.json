@@ -1,0 +1,31 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "build-js": "browserify src/index.js -t [ eslintify --quiet ] -t [ babelify --presets [ es2015 ] ] | uglifyjs -c > bundle.js",
+    "watch-js": "watchify src/index.js -o bundle.js -t [eslintify --continuous ] -t [ babelify --presets [ es2015 ] ]",
+    "dev": "npm run watch-js"
+  },
+  "author": "Sartaj <sartaj@sartaj.me> (sartaj.me)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2016": "^6.11.3",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^2.0.0",
+    "eslint-plugin-react": "^5.2.2",
+    "eslintify": "^2.1.0",
+    "uglify-js": "^2.7.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "kefir": "^3.2.6"
+  }
+}

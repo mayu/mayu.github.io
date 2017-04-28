@@ -1,0 +1,191 @@
+/* Container */
+
+  /* Typography */
+
+    @import url('https://fonts.googleapis.com/css?family=Muli');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+    body, ul, h1, h2, h3, h4, h5, h6, p, a {
+      color: rgba(255,255,255,1);
+      text-decoration: none;
+      font-family: 'Montserrat';
+    }
+
+  /* Structure */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      /*transition: transform 10ms linear;*/
+    }
+
+    body, ul, li, h1, h2, h3, h4, h5, h6, p, a {
+      padding: 0;
+      margin: 0;
+    }
+
+    li, ul {
+      list-style-type: none;
+    }
+
+    .Grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .Col {
+      flex: 1;
+    }
+
+    @media (orientation: portrait) {
+      .Grid.small {
+        display: block;
+      }
+      .Col.small {
+        margin: 0 auto;
+      }
+    }
+
+  /* Skin */
+
+    body {
+      background: rgba(0,0,0,1);
+    }
+
+  /* Nav */
+
+    /* Typography*/
+
+      nav {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 1rem;;
+        text-align: right;
+      }
+
+    /* Structure */
+
+      nav {
+        z-index: 4;
+
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        /*height: 5rem;*/
+        /*overflow: hidden;*/
+
+        transform: translateY(0);
+      }
+
+      nav:hover {
+        /*height: 10rem;*/
+        /*transform: translateY(-4rem);*/
+        /*overflow: initial;*/
+      }
+
+      nav li {
+        padding: 3rem;
+      }
+
+      nav li a{
+        position: relative;
+        display: block;
+      }
+
+    /* Animations */
+
+      nav {
+        transform: translateY(23rem);
+        transition: transform 0.3s ease;
+      }
+
+      nav:hover, nav.isFocused {
+        transform: translateY(0rem);
+      }
+
+      nav li a {
+        transition: all 0.3s ease;
+        transform: scale(1) translate(0);
+      }
+      nav li a.isActive  {
+        transform: scale(2);
+        transform-origin: right;
+      }
+
+      nav li a:not(.isActive)  {
+        /*background: white;*/
+        transform: scale(0.5) translate(0);
+        transform-origin: right;
+        opacity: 0.0;
+      }
+
+      nav:hover li a:not(.isActive) {
+        transform: scale(2);
+        opacity: 0.8;
+      }
+
+      nav:hover li a.isActive {
+        transform: scale(3);
+        transition: transform 0.3s ease 0s;
+      }
+
+/* Molecules */
+
+  .FullViewSection {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+/* Organisms */
+
+  /* Hero */
+
+    .Hero-title {
+      z-index: 2;
+      position: relative;
+
+      font-family: "Montserrat";
+      text-transform: uppercase;
+      text-align: justify;
+      font-size: 4rem;
+
+      color: #acffc7;
+    }
+
+    .Hero-title-col {
+      max-width: 28rem;
+    }
+
+    .Hero-image {
+      z-index: 1;
+
+      display: block;
+      min-width: 100vh;
+      min-height: 100vh;
+      position: absolute;
+
+      transition: opacity 0.3s linear 0.3s;
+      filter: blur(0px) grayscale(0.0) opacity(0.9);
+    }
+
+    section:not(.u-inViewport) * {
+        transition: none!important;
+        filter: none!important;
+        transform: none!important;
+    }
+
+/* Utilities */
+
+  .u-Full {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .Process-skin {
+    background: #b0b5c5;
+  }

@@ -1,0 +1,19 @@
+{
+  "name": "mayu-site",
+  "version": "1.0.0",
+  "description": "website for glovesbymayu.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayu/mayu.github.io.git"
+  },
+  "author": "Sartaj <sartaj@sartaj.me> (sartaj.me)",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/mayu/mayu.github.io/issues"
+  },
+  "homepage": "https://github.com/mayu/mayu.github.io#readme"
+}

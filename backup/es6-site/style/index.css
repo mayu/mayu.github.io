@@ -1,0 +1,15 @@
+@import 'https://fonts.googleapis.com/css?family=Bitter|Playfair+Display:400,700|Roboto:300,400,400i,700';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css';
+
+@import './reset.css';
+@import './grid.css';
+@import './structure.css';
+@import './typography.css';
+@import './skin.css';
+
+@import './components/page.css';
+@import './components/top-section.css';
+@import './components/cover.css';
+@import './components/points.css';
+@import './components/professional.css';
+@import './components/personal.css';

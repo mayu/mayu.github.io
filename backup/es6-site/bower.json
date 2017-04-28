@@ -1,0 +1,21 @@
+{
+  "name": "resume",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Sartaj <sartaj@sartaj.me> (sartaj.me)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sartaj/sartaj.github.io",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "^5.5.3"
+  }
+}
