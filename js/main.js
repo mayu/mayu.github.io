@@ -230,19 +230,19 @@
 		  };
 		};
 
-		window.ondevicemotion = throttle(function(event) {
-			var accelerationX = event.accelerationIncludingGravity.x.toFixed(1);
-			var accelerationY = event.accelerationIncludingGravity.y.toFixed(1);
-			// apply transform
-			applyRoomTransform({
-				'translateX' : initTransform.translateX*2,
-				'translateY' : initTransform.translateY/2,
-				'translateZ' : initTransform.translateZ,
-				'rotateX' : accelerationY + 'deg',
-				'rotateY' : accelerationX + 'deg',
-				'rotateZ' : initTransform.rotateZ
-			});
-		}, 100);
+		// window.ondevicemotion = throttle(function(event) {
+		// 	var accelerationX = event.accelerationIncludingGravity.x.toFixed(1);
+		// 	var accelerationY = event.accelerationIncludingGravity.y.toFixed(1);
+		// 	// apply transform
+		// 	applyRoomTransform({
+		// 		'translateX' : initTransform.translateX*2,
+		// 		'translateY' : initTransform.translateY/2,
+		// 		'translateZ' : initTransform.translateZ,
+		// 		'rotateX' : accelerationY + 'deg',
+		// 		'rotateY' : accelerationX + 'deg',
+		// 		'rotateZ' : initTransform.rotateZ
+		// 	});
+		// }, 100);
 
 		document.addEventListener('mousemove', onMouseMoveFn);
 		window.addEventListener('resize', debounceResizeFn);
