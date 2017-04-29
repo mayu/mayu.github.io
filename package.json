@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/mayu/mayu.github.io.git"
   },
+  "devDependencies": {
+    "standard": "latest"
+  }
   "author": "Sartaj <sartaj@sartaj.me> (sartaj.me)",
   "license": "",
   "bugs": {

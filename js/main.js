@@ -28,6 +28,43 @@
 		};
 	};
 
+	// Returns a function, that, when invoked, will only be triggered at most once
+	// during a given window of time. Normally, the throttled function will run
+	// as much as it can, without ever going more than once per `wait` duration;
+	// but if you'd like to disable the execution on the leading edge, pass
+	// `{leading: false}`. To disable execution on the trailing edge, ditto.
+	function throttle(func, wait, options) {
+	  var context, args, result;
+	  var timeout = null;
+	  var previous = 0;
+	  if (!options) options = {};
+	  var later = function() {
+	    previous = options.leading === false ? 0 : Date.now();
+	    timeout = null;
+	    result = func.apply(context, args);
+	    if (!timeout) context = args = null;
+	  };
+	  return function() {
+	    var now = Date.now();
+	    if (!previous && options.leading === false) previous = now;
+	    var remaining = wait - (now - previous);
+	    context = this;
+	    args = arguments;
+	    if (remaining <= 0 || remaining > wait) {
+	      if (timeout) {
+	        clearTimeout(timeout);
+	        timeout = null;
+	      }
+	      previous = now;
+	      result = func.apply(context, args);
+	      if (!timeout) context = args = null;
+	    } else if (!timeout && options.trailing !== false) {
+	      timeout = setTimeout(later, remaining);
+	    }
+	    return result;
+	  };
+	};
+
 	// from http://www.quirksmode.org/js/events_properties.html#position
 	function getMousePos(e) {
 		var posx = 0;
@@ -167,68 +204,31 @@
 
 	function initEvents() {
 		// Mousemove event / Tilt functionality.
-		var onMouseMoveFn = function(ev) {
-				requestAnimationFrame(function() {
-					if( !tilt ) return false;
-
-
-					var mousepos = getMousePos(ev),
-						// transform values
-						rotX = tiltRotation.rotateX ? initTransform.rotateX -  (2 * tiltRotation.rotateX / win.height * mousepos.y - tiltRotation.rotateX) : 0,
-						rotY = tiltRotation.rotateY ? initTransform.rotateY -  (2 * tiltRotation.rotateY / win.width * mousepos.x - tiltRotation.rotateY) : 0;
-
-					// apply transform
-					applyRoomTransform({
-						'translateX' : initTransform.translateX,
-						'translateY' : initTransform.translateY,
-						'translateZ' : initTransform.translateZ,
-						'rotateX' : rotX + 'deg',
-						'rotateY' : rotY + 'deg',
-						'rotateZ' : initTransform.rotateZ
-					});
-				});
-			},
-			// Window resize.
-			debounceResizeFn = debounce(function() {
-				win = {width: window.innerWidth, height: window.innerHeight};
-			}, 10);
-
-		// Returns a function, that, when invoked, will only be triggered at most once
-		// during a given window of time. Normally, the throttled function will run
-		// as much as it can, without ever going more than once per `wait` duration;
-		// but if you'd like to disable the execution on the leading edge, pass
-		// `{leading: false}`. To disable execution on the trailing edge, ditto.
-		function throttle(func, wait, options) {
-		  var context, args, result;
-		  var timeout = null;
-		  var previous = 0;
-		  if (!options) options = {};
-		  var later = function() {
-		    previous = options.leading === false ? 0 : Date.now();
-		    timeout = null;
-		    result = func.apply(context, args);
-		    if (!timeout) context = args = null;
-		  };
-		  return function() {
-		    var now = Date.now();
-		    if (!previous && options.leading === false) previous = now;
-		    var remaining = wait - (now - previous);
-		    context = this;
-		    args = arguments;
-		    if (remaining <= 0 || remaining > wait) {
-		      if (timeout) {
-		        clearTimeout(timeout);
-		        timeout = null;
-		      }
-		      previous = now;
-		      result = func.apply(context, args);
-		      if (!timeout) context = args = null;
-		    } else if (!timeout && options.trailing !== false) {
-		      timeout = setTimeout(later, remaining);
-		    }
-		    return result;
-		  };
-		};
+		// var onMouseMoveFn = function(ev) {
+		// 		requestAnimationFrame(function() {
+		// 			if( !tilt ) return false;
+		//
+		//
+		// 			var mousepos = getMousePos(ev),
+		// 				// transform values
+		// 				rotX = tiltRotation.rotateX ? initTransform.rotateX -  (2 * tiltRotation.rotateX / win.height * mousepos.y - tiltRotation.rotateX) : 0,
+		// 				rotY = tiltRotation.rotateY ? initTransform.rotateY -  (2 * tiltRotation.rotateY / win.width * mousepos.x - tiltRotation.rotateY) : 0;
+		//
+		// 			// apply transform
+		// 			applyRoomTransform({
+		// 				'translateX' : initTransform.translateX,
+		// 				'translateY' : initTransform.translateY,
+		// 				'translateZ' : initTransform.translateZ,
+		// 				'rotateX' : rotX + 'deg',
+		// 				'rotateY' : rotY + 'deg',
+		// 				'rotateZ' : initTransform.rotateZ
+		// 			});
+		// 		});
+		// 	},
+		// 	// Window resize.
+		// 	debounceResizeFn = debounce(function() {
+		// 		win = {width: window.innerWidth, height: window.innerHeight};
+		// 	}, 10);
 
 		// window.ondevicemotion = throttle(function(event) {
 		// 	var accelerationX = event.accelerationIncludingGravity.x.toFixed(1);
@@ -244,21 +244,20 @@
 		// 	});
 		// }, 100);
 
-		document.addEventListener('mousemove', onMouseMoveFn);
-		window.addEventListener('resize', debounceResizeFn);
+		// document.addEventListener('mousemove', onMouseMoveFn);
+		// document.addEventListener('touchmove', function(e) {
+		// 	var context, args;
+		// 	e.preventDefault()
+		// 	onMouseMoveFn(e)
+		// });
+		// window.addEventListener('resize', debounceResizeFn);
 
 		// Room navigation.
-		var onNavigatePrevFn = function() { navigate('prev'); },
-			onNavigateNextFn = function() { navigate('next'); };
-
-		DOM.nav.leftCtrl.addEventListener('click', onNavigatePrevFn);
-		DOM.nav.rightCtrl.addEventListener('click', onNavigateNextFn);
-
-		// Menu click.
-		DOM.menuCtrl.addEventListener('click', toggleMenu);
-
-		// Info click.
-		DOM.infoCtrl.addEventListener('click', toggleInfo);
+		// var onNavigatePrevFn = function() { navigate('prev'); },
+		// 	onNavigateNextFn = function() { navigate('next'); };
+		//
+		// DOM.nav.leftCtrl.addEventListener('click', onNavigatePrevFn);
+		// DOM.nav.rightCtrl.addEventListener('click', onNavigateNextFn);
 	}
 
 	function applyRoomTransform(transform) {
@@ -318,298 +317,6 @@
 		toggleSlide('out', delay);
 	}
 
-	function navigate(dir) {
-		if( isMoving || isNavigating ) {
-			return false;
-		}
-		isNavigating = true;
-
-		var room = DOM.rooms[currentRoom];
-
-		// Remove tilt.
-		removeTilt();
-		// Animate the current slide out - animate the name, title and date elements.
-		hideSlide();
-
-		// Update currentRoom.
-		if( dir === 'next' ) {
-			currentRoom = currentRoom < totalRooms - 1 ? currentRoom + 1 : 0;
-		}
-		else {
-			currentRoom = currentRoom > 0 ? currentRoom - 1 : totalRooms - 1;
-		}
-
-		// Position the next room.
-		var nextRoom = DOM.rooms[currentRoom];
-		nextRoom.style.transform = 'translate3d(' + (dir === 'next' ? 100 : -100) + '%,0,0) translate3d(' + (dir === 'next' ? 1 : -1) + 'px,0,0)' ;
-		nextRoom.style.opacity = 1;
-
-		// Move back.
-		move({transition: roomTransition, transform: resetTransform})
-		.then(function() {
-			// Move left or right.
-			return move({transform: { translateX : (dir === 'next' ? -100 : 100) + '%', translateY : 0, translateZ : 0, rotateX : 0, rotateY : 0, rotateZ : 0 }});
-		})
-		.then(function() {
-			// Update current room class.
-			nextRoom.classList.add('room--current');
-			room.classList.remove('room--current');
-			room.style.opacity = 0;
-
-			// Show the next slide.
-			showSlide();
-
-			// Move into room.
-			// Update final transform state:
-			return move({transform: { translateX : (dir === 'next' ? -100 : 100) + '%', translateY : 0, translateZ : '500px', rotateX : 0, rotateY : 0, rotateZ : 0 }});
-		})
-		.then(function() {
-			// Reset positions.
-			applyRoomTransition('none');
-			nextRoom.style.transform = 'translate3d(0,0,0)';
-			applyRoomTransform(initTransform);
-
-			setTimeout(function() {
-				initTilt();
-			}, 60);
-			isNavigating = false;
-		});
-	}
-
-	function toggleMenu() {
-		if( /*isMoving ||*/ isNavigating ) {
-			return false;
-		}
-		if( DOM.menuCtrl.classList.contains('btn--active') ) {
-			// Close it.
-			closeMenu();
-		}
-		else {
-			// Open it.
-			showMenu();
-		}
-	}
-
-	function showMenu() {
-		// Button becomes cross.
-		DOM.menuCtrl.classList.add('btn--active');
-		// Remove tilt.
-		removeTilt();
-		// Add adjacent rooms.
-		//addAdjacentRooms();
-		// Hide current slide.
-		hideSlide();
-		// Apply menu transition.
-		applyRoomTransition(menuTransition);
-		// View from top:
-		move({transform: menuTransform, stopTransition: true});
-		// Show menu items
-		anime.remove(DOM.menuItems);
-		anime({
-			targets: DOM.menuItems,
-			duration: 500,
-			easing: [0.2,1,0.3,1],
-			delay: function(t,i) {
-				return 250+50*i;
-			},
-			translateY: [150, 0],
-			opacity: {
-				value: [0,1],
-				duration: 200,
-				easing: 'linear'
-			},
-			begin: function() {
-				DOM.menuOverlay.classList.add('overlay--active');
-			}
-		});
-		anime.remove(DOM.menuOverlay);
-		anime({
-			targets: DOM.menuOverlay,
-			duration: 1000,
-			easing: [0.25,0.1,0.25,1],
-			opacity: [0,1]
-		});
-	}
-
-	function closeMenu() {
-		// Button becomes menu.
-		DOM.menuCtrl.classList.remove('btn--active');
-		// Apply room transition.
-		applyRoomTransition(roomTransition);
-		// Show current slide.
-		showSlide(150);
-		// back to room view:
-		move({transform: initTransform, stopTransition: true}).then(function() {
-			// Remove adjacent rooms.
-			//removeAdjacentRooms();
-			// Init tilt.
-			initTilt();
-		});
-		anime.remove(DOM.menuItems);
-		anime({
-			targets: DOM.menuItems,
-			duration: 250,
-			easing: [0.25,0.1,0.25,1],
-			delay: function(t,i,c) {
-				return 40*(c-i-1);
-			},
-			translateY: [0, 150],
-			opacity: {
-				value: [1,0],
-				duration: 250
-			},
-			complete: function() {
-				DOM.menuOverlay.classList.remove('overlay--active');
-			}
-		});
-		anime.remove(DOM.menuOverlay);
-		anime({
-			targets: DOM.menuOverlay,
-			duration: 400,
-			easing: [0.25,0.1,0.25,1],
-			opacity: [1,0]
-		});
-	}
-
-	function addAdjacentRooms() {
-		// Current room.
-		var room = DOM.rooms[currentRoom],
-			// Adjacent rooms.
-			nextRoom = DOM.rooms[currentRoom < totalRooms - 1 ? currentRoom + 1 : 0],
-			prevRoom = DOM.rooms[currentRoom > 0 ? currentRoom - 1 : totalRooms - 1];
-
-		// Position the adjacent rooms.
-		nextRoom.style.transform = 'translate3d(100%,0,0) translate3d(3px,0,0)';
-		nextRoom.style.opacity = 1;
-		prevRoom.style.transform = 'translate3d(-100%,0,0) translate3d(-3px,0,0)';
-		prevRoom.style.opacity = 1;
-	}
-
-	function removeAdjacentRooms() {
-		// Current room.
-		var room = DOM.rooms[currentRoom],
-			// Adjacent rooms.
-			nextRoom = DOM.rooms[currentRoom < totalRooms - 1 ? currentRoom + 1 : 0],
-			prevRoom = DOM.rooms[currentRoom > 0 ? currentRoom - 1 : totalRooms - 1];
-
-		// Position the adjacent rooms.
-		nextRoom.style.transform = 'none';
-		nextRoom.style.opacity = 0;
-		prevRoom.style.transform = 'none';
-		prevRoom.style.opacity = 0;
-	}
-
-	function toggleInfo() {
-		if( isNavigating ) {
-			return false;
-		}
-		if( DOM.infoCtrl.classList.contains('btn--active') ) {
-			// Close it.
-			closeInfo();
-		}
-		else {
-			// Open it.
-			showInfo();
-		}
-	}
-
-	function showInfo() {
-		// Button becomes cross.
-		DOM.infoCtrl.classList.add('btn--active');
-		// Remove tilt.
-		removeTilt();
-		// Hide current slide.
-		hideSlide();
-		// Apply info transition.
-		applyRoomTransition(infoTransition);
-		// Infoview:
-		move({transform: infoTransform, stopTransition: true});
-		// Show info text and animate photos out of the walls.
-		var photos = DOM.rooms[currentRoom].querySelectorAll('.room__img');
-		anime.remove(photos);
-		anime({
-			targets: photos,
-			duration: function() {
-				return anime.random(15000, 30000);
-			},
-			easing: [0.3,1,0.3,1],
-			translateY: function() {
-				return anime.random(-50,50);
-			},
-			rotateX: function() {
-				return anime.random(-2,2);
-			},
-			rotateZ: function() {
-				return anime.random(-5,5);
-			},
-			translateZ: function() {
-				return [10,anime.random(50,win.width/3)];
-			}
-		});
-		// Animate info text and overlay.
-		anime.remove([DOM.infoOverlay, DOM.infoText]);
-		var animeInfoOpts = {
-			targets: [DOM.infoOverlay, DOM.infoText],
-			duration: 1500,
-			delay: function(t,i) {
-				return !i ? 0 : 150;
-			},
-			easing: [0.25,0.1,0.25,1],
-			opacity: [0,1],
-			translateY: function(t,i) {
-				return !i ? 0 : [30,0];
-			},
-			begin: function() {
-				DOM.infoOverlay.classList.add('overlay--active');
-			}
-		};
-		anime(animeInfoOpts);
-	}
-
-	function closeInfo() {
-		// Button becomes info.
-		DOM.infoCtrl.classList.remove('btn--active');
-		// Apply room transition.
-		applyRoomTransition(roomTransition);
-		// Show current slide.
-		showSlide(100);
-		// back to room view:
-		move({transform: initTransform, stopTransition: true}).then(function() {
-			initTilt();
-		});
-
-		// Hide info text and animate photos into the walls.
-		var photos = DOM.rooms[currentRoom].querySelectorAll('.room__img');
-		anime.remove(photos);
-		anime({
-			targets: photos,
-			duration: 400,
-			easing: [0.3,1,0.3,1],
-			translateY: 0,
-			rotateX: 0,
-			rotateZ: 0,
-			translateZ: 10
-		});
-		// Animate info text and overlay.
-		anime.remove([DOM.infoOverlay, DOM.infoText]);
-		var animeInfoOpts = {
-			targets: [DOM.infoOverlay, DOM.infoText],
-			duration: 400,
-			easing: [0.25,0.1,0.25,1],
-			opacity: [1,0],
-			translateY: function(t,i) {
-				return !i ? 0 : [0,30];
-			},
-			complete: function() {
-				DOM.infoOverlay.classList.remove('overlay--active');
-			}
-		};
-		anime(animeInfoOpts);
-	}
-
-	setInterval(function() {
-		document.querySelector('body').style.height = window.innerHeight
-	},100);
 	// Preload all the images.
 	imagesLoaded(DOM.scroller, function() {
 		var extradelay = 1000;
